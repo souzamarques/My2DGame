@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private bool isJumping;
+    private bool doubleJump;
+
     public float speed;
     public float jumpForce;
 
@@ -21,6 +24,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Jump();
     }
 
     void Move()
@@ -42,6 +46,29 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
+        if(Input.GetButtonDown("Jump"))
+        {
+            if(!isJumping)
+            {
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                doubleJump = true;
+                isJumping = true;
+            }
+            else
+            {
+                if(doubleJump)
+                {
+                    rb.AddForce(new Vector2(0, jumpForce * 2), ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+            }
+        }
+    }
 
+    void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.layer == 3)
+        {
+            isJumping = false;
+        }    
     }
 }
