@@ -35,12 +35,25 @@ public class Player : MonoBehaviour
 
         if(movement > 0)
         {
+            if(!isJumping)
+            {
+                anim.SetInteger("transition", 1);
+            }
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
         if(movement < 0)
         {
+            if(!isJumping)
+            {
+                anim.SetInteger("transition", 1);
+            }
             transform.eulerAngles = new Vector3(0, -180, 0);
+        }
+
+        if(movement == 0 && !isJumping)
+        {
+            anim.SetInteger("transition", 0);
         }
     }
 
@@ -50,6 +63,7 @@ public class Player : MonoBehaviour
         {
             if(!isJumping)
             {
+                anim.SetInteger("transition", 2);
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 doubleJump = true;
                 isJumping = true;
@@ -58,6 +72,7 @@ public class Player : MonoBehaviour
             {
                 if(doubleJump)
                 {
+                    anim.SetInteger("transition", 2);
                     rb.AddForce(new Vector2(0, jumpForce * 2), ForceMode2D.Impulse);
                     doubleJump = false;
                 }
