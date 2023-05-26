@@ -6,12 +6,17 @@ public class Player : MonoBehaviour
 {
     private bool isJumping;
     private bool doubleJump;
+    private bool isThrow;
+    private float movement;
 
     public float speed;
     public float jumpForce;
 
     private Rigidbody2D rb;
     private Animator anim;
+
+    public GameObject rock;
+    public Transform rockPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +28,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         Jump();
+        ThrowRock();
+    }
+
+    void FixedUpdate()
+    {
+        Move();    
     }
 
     void Move()
     {
-        float movement = Input.GetAxis("Horizontal");
+        movement = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movement * speed, rb.velocity.y);
 
@@ -51,7 +61,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector3(0, -180, 0);
         }
 
-        if(movement == 0 && !isJumping)
+        if((movement == 0) && (!isJumping) && (!isThrow))
         {
             anim.SetInteger("transition", 0);
         }
@@ -77,6 +87,34 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
+        }
+    }
+
+    void ThrowRock()
+    {
+        StartCoroutine("ThrowThrow");
+    }
+
+    IEnumerator ThrowThrow()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            isThrow = true;
+            anim.SetInteger("transition", 3);
+            GameObject Rock = Instantiate(rock, rockPoint.position, rockPoint.rotation);
+
+            if(transform.rotation.y == 0)
+            {
+                Rock.GetComponent<Rock>().isRight = true;
+            }
+
+            if(transform.rotation.y == 180)
+            {
+                Rock.GetComponent<Rock>().isRight = false;
+            }
+
+            yield return new WaitForSeconds(0.15f);
+            anim.SetInteger("transition", 0);
         }
     }
 
