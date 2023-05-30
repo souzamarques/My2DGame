@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.15f);
+            isThrow = false;
             anim.SetInteger("transition", 0);
         }
     }
