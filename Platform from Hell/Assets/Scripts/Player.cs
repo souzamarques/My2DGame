@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private bool isThrow;
     private float movement;
 
+    public int health = 5;
     public float speed;
     public float jumpForce;
 
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        GameController.instance.UpdateLives(health);
     }
 
     // Update is called once per frame
@@ -117,6 +120,12 @@ public class Player : MonoBehaviour
             isThrow = false;
             anim.SetInteger("transition", 0);
         }
+    }
+
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+        GameController.instance.UpdateLives(health);
     }
 
     void OnCollisionEnter2D(Collision2D other) {
