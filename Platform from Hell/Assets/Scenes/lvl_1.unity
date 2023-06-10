@@ -35708,14 +35708,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySlime (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4287072128045071482, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
-      propertyPath: speed
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4287072128045071482, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
-      propertyPath: walkTime
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4287072128045071487, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -36550,6 +36542,10 @@ PrefabInstance:
     - target: {fileID: 4287072128045071461, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
       propertyPath: m_Name
       value: EnemySlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287072128045071482, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
+      propertyPath: speed
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 4287072128045071487, guid: 9ef870a971858948f916a9500fb659a2, type: 3}
       propertyPath: m_RootOrder

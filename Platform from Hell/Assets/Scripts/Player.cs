@@ -126,6 +126,17 @@ public class Player : MonoBehaviour
     {
         health -= dmg;
         GameController.instance.UpdateLives(health);
+        anim.SetTrigger("hit");
+
+        if (transform.rotation.eulerAngles.y == 0)
+        {
+            transform.position += new Vector3(-1, 0, 0);
+        }
+        
+        if (transform.rotation.eulerAngles.y == 180)
+        {
+            transform.position += new Vector3(1, 0, 0);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other) {

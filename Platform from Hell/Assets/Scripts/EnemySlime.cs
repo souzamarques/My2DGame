@@ -8,6 +8,7 @@ public class EnemySlime : MonoBehaviour
     private float timer;
 
     public int health = 2;
+    public int damage = 1;
     public float speed;
     public float walkTime;
 
@@ -51,6 +52,14 @@ public class EnemySlime : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {    
+        if(other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<Player>().Damage(damage);
         }
     }
 }
