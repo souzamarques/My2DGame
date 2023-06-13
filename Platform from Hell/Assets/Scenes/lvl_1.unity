@@ -35608,7 +35608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5484930eb3790252eb47bbd9483f3a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 3
   speed: 5
   jumpForce: 7
   rock: {fileID: 7642317987459656500, guid: 4b74c4285a33a6ab88dad3b81fcad6f0, type: 3}

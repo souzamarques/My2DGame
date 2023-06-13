@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private bool isThrow;
     private float movement;
 
-    public int health = 5;
+    public int health = 3;
     public float speed;
     public float jumpForce;
 
