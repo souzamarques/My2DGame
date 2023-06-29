@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -25,5 +26,10 @@ public class GameController : MonoBehaviour
     public void UpdateLives(int value)
     {
         healthText.text = "x" + value.ToString();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }
