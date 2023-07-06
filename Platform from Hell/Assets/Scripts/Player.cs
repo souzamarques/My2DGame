@@ -137,6 +137,11 @@ public class Player : MonoBehaviour
         {
             transform.position += new Vector3(1, 0, 0);
         }
+
+        if(health <= 0)
+        {
+            GameController.instance.GameOver();
+        }
     }
 
     public void IncreaseLife(int value)
@@ -149,6 +154,11 @@ public class Player : MonoBehaviour
         if(other.gameObject.layer == 3)
         {
             isJumping = false;
+        }
+
+        if(other.gameObject.layer == 6)
+        {
+            GameController.instance.GameOver();
         }    
     }
 }
