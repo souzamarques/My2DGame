@@ -7,11 +7,14 @@ public class Player : MonoBehaviour
     private bool isJumping;
     private bool doubleJump;
     private bool isThrow;
-    private float movement;
 
+    public bool isMobile;
+    public bool touchJump;
+    public bool touchRock;
     public int health = 3;
     public float speed;
     public float jumpForce;
+    public float movement;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -42,7 +45,10 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        movement = Input.GetAxis("Horizontal");
+        if(!isMobile)
+        {
+            movement = Input.GetAxis("Horizontal");
+        }
 
         rb.velocity = new Vector2(movement * speed, rb.velocity.y);
 
@@ -72,7 +78,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") || touchJump)
         {
             if(!isJumping)
             {
@@ -90,6 +96,8 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
+
+            touchJump = false;
         }
     }
 
@@ -100,8 +108,9 @@ public class Player : MonoBehaviour
 
     IEnumerator ThrowThrow()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) || touchRock)
         {
+            touchRock = false;
             isThrow = true;
             anim.SetInteger("transition", 3);
             GameObject Rock = Instantiate(rock, rockPoint.position, rockPoint.rotation);
